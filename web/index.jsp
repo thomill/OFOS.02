@@ -37,11 +37,7 @@
                             <h1> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#"><img src="./indexUpdated_files/TMPS000136.png" alt=""></a> </h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="contact">
-                            <p>Questions? Call us Toll-free!<span class="number"><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">1800-0000-7777</a></span><span class="time">(11AM to 11PM)</span></p>
-                        </div>
-                    </div>
+              
                 </div>
             </div>
         </header>
