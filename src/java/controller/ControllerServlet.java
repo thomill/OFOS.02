@@ -21,7 +21,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "Controller",
             loadOnStartup = 1,
-            urlPatterns = {"/mainlogin"})
+            urlPatterns = {"/mainlogin",
+            "/login"})
 public class ControllerServlet extends HttpServlet {
 
     /**
@@ -78,13 +79,17 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
+        
         String uname = request.getParameter("uname");
         String pass = request.getParameter("pass");
+        
+        if (userPath.equals("/login")) {
         
         LoginDAO dao = new LoginDAO();
         
         if(dao.check(uname,pass)) {
-            HttpSession session = request.getSession();
             session.setAttribute("username", uname);
             response.sendRedirect("index.jsp");
         }
@@ -92,6 +97,7 @@ public class ControllerServlet extends HttpServlet {
         {
             response.sendRedirect("mainlogin.jsp");
         }
+    }
     }
 
     /**
