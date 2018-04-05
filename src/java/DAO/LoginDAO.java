@@ -29,7 +29,7 @@ public class LoginDAO {
                     "root", "root");
             Statement st = con.createStatement();
         ResultSet rs;
-        rs = st.executeQuery("select * from Customer where username='" + username + "' and password='" + password + "'");
+        rs = st.executeQuery("select * from Account where email='" + username + "' and password='" + password + "'");
             if (rs.next()) {
                 return true;
             }
