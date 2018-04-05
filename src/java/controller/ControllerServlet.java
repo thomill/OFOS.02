@@ -5,7 +5,7 @@
  */
 package controller;
 
-import DAO.LoginDAO;
+import DAO.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  * @author Tom
  */
 @WebServlet(name = "Controller",
-            loadOnStartup = 1,
-            urlPatterns = {"/mainlogin",
+        loadOnStartup = 1,
+        urlPatterns = {"/mainlogin",
             "/login"})
 public class ControllerServlet extends HttpServlet {
 
@@ -42,7 +42,7 @@ public class ControllerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerServlet</title>");            
+            out.println("<title>Servlet ControllerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ControllerServlet at " + request.getContextPath() + "</h1>");
@@ -78,26 +78,24 @@ public class ControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
-        
+
         String uname = request.getParameter("uname");
         String pass = request.getParameter("pass");
-        
+
         if (userPath.equals("/login")) {
-        
-        LoginDAO dao = new LoginDAO();
-        
-        if(dao.check(uname,pass)) {
-            session.setAttribute("username", uname);
-            response.sendRedirect("index.jsp");
+
+            AccountDAO dao = new AccountDAO();
+
+            if (dao.check(uname, pass)) {
+                session.setAttribute("username", uname);
+                response.sendRedirect("index.jsp");
+            } else {
+                response.sendRedirect("mainlogin.jsp");
+            }
         }
-        else
-        {
-            response.sendRedirect("mainlogin.jsp");
-        }
-    }
     }
 
     /**

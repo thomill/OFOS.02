@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Tom
  */
-public class LoginDAO {
+public class AccountDAO {
 
     public boolean check(String username, String password) {
 
@@ -22,7 +22,7 @@ public class LoginDAO {
 
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
@@ -34,7 +34,7 @@ public class LoginDAO {
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
