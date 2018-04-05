@@ -6,6 +6,7 @@
 package controller;
 
 import DAO.AccountDAO;
+import Entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,8 +22,10 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "Controller",
         loadOnStartup = 1,
-        urlPatterns = {"/mainlogin",
-            "/login"})
+        urlPatterns = {
+            "/mainlogin",
+            "/login",
+            "/logout"})
 public class ControllerServlet extends HttpServlet {
 
     /**
@@ -63,7 +66,18 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
+
+        // if the logout path is requested
+        if (userPath.equals("/logout")) {
+            
+            session.invalidate();
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+
+        }
     }
 
     /**
@@ -82,20 +96,30 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
 
-        String uname = request.getParameter("uname");
+        String uname = request.getParameter("username");
         String pass = request.getParameter("pass");
 
+        // if login function is called
         if (userPath.equals("/login")) {
 
             AccountDAO dao = new AccountDAO();
 
             if (dao.check(uname, pass)) {
-                session.setAttribute("username", uname);
+                Account user = new Account();
+                user.setEmail(uname);
+                session.setAttribute("account", user);
                 response.sendRedirect("index.jsp");
             } else {
-                response.sendRedirect("mainlogin.jsp");
+                response.sendRedirect("success.jsp");
             }
         }
+        
+        // if the logout path is requested
+        if (userPath.equals("/logout")) {
+            session.invalidate();
+            response.sendRedirect("index.jsp");
+        }
+
     }
 
     /**

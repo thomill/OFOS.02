@@ -37,7 +37,7 @@
                             <h1> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#"><img src="./indexUpdated_files/TMPS000136.png" alt=""></a> </h1>
                         </div>
                     </div>
-              
+
                 </div>
             </div>
         </header>
@@ -50,19 +50,21 @@
                             <div class="mobile-nav-btn"><img class="nav-open" src="./indexUpdated_files/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="./indexUpdated_files/nav-close.png" alt="Nav Button Close"> </div>
                             <nav>
                                 <ul>
-                                    <li><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#home">Home</a></li>
-
-                                    <li><a href="reg.js>Order </a></li>
+                                    <li>
+                                        <%
+                                            if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) {
+                                        %>
+                                        <a href="mainlogin.jsp">Login</a>
+                                        <%} else {
+                                        %>
+                                        <a>Welcome ${account.getEmail()}</a>
+                                        <%
+                                            }
+                                        %></li>
+                                    <li><a href="reg.jsp">Register</a></li>
+                                    <li><a href="logout">Logout</a></li>
 
                                 </ul>
-                            </nav>
-                        </div>
-                        <div class="login">
-                            <ul>
-                                <li><a href="mainlogin.jsp">Login</a></li>
-                                <li><a href="reg.jsp">Register</a></li>
-
-                            </ul>
                         </div>
                     </div>
                 </div>
