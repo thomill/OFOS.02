@@ -179,7 +179,7 @@ header {
 .login a:hover {
 	color: #69c15f;
 }
-.backgraound {
+.background {
 	background: url(../images/backgraound.jpg) no-repeat;
 	background-size: cover;
 	display: block;
