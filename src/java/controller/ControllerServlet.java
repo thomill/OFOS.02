@@ -6,9 +6,12 @@
 package controller;
 
 import DAO.AccountDAO;
+import DAO.RestaurantDAO;
 import Entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +28,8 @@ import javax.servlet.http.HttpSession;
         urlPatterns = {
             "/mainlogin",
             "/login",
-            "/logout"})
+            "/logout",
+            "/restaurants"})
 public class ControllerServlet extends HttpServlet {
 
     /**
@@ -67,16 +71,31 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
 
         // if the logout path is requested
         if (userPath.equals("/logout")) {
-            
+
             session.invalidate();
             request.getRequestDispatcher("/index.jsp").forward(request, response);
 
+        }
+
+        // testing to return a list of restaurants
+        if (userPath.equals("/restaurants")) {
+
+            String page = "restaurants.jsp";
+
+            // accept a list of restaurants from restaurants.java
+            RestaurantDAO dao = new RestaurantDAO();
+            List list = dao.getRestaurantList();
+
+            request.setAttribute("restList", list);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            }
         }
     }
 
@@ -113,7 +132,7 @@ public class ControllerServlet extends HttpServlet {
                 response.sendRedirect("success.jsp");
             }
         }
-        
+
         // if the logout path is requested
         if (userPath.equals("/logout")) {
             session.invalidate();

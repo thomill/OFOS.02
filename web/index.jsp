@@ -62,7 +62,11 @@
                                             }
                                         %></li>
                                     <li><a href="reg.jsp">Register</a></li>
-                                    <li><a href="logout">Logout</a></li>
+                                    <li>
+                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                        <%} else {
+                                        %><a href="logout">Logout</a></li> <% }%>
+                                    <li><a href="restaurants">Restaurants</a></li>
 
                                 </ul>
                         </div>
