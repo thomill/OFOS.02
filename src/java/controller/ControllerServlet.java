@@ -133,11 +133,11 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        // if the logout path is requested
-        if (userPath.equals("/logout")) {
-            session.invalidate();
-            response.sendRedirect("index.jsp");
-        }
+//        // if the logout path is requested
+//        if (userPath.equals("/logout")) {
+//            session.invalidate();
+//            response.sendRedirect("index.jsp");
+//        }
 
     }
 

@@ -13,11 +13,11 @@
         <title>Restaurants</title>
 
         <!--CSS---->
-        <link rel="stylesheet" type="text/css" href="./indexUpdated_files/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="./indexUpdated_files/style.css">
-        <link rel="stylesheet" type="text/css" href="./indexUpdated_files/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/css/animate.css">
-        <link rel="stylesheet" type="text/css" href="./indexUpdated_files/responsive.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
 
     </head>
     <body>
@@ -30,7 +30,7 @@
                 <div class="row clearfix" id="home">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="logo">
-                            <h1> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#"><img src="./indexUpdated_files/TMPS000136.png" alt=""></a> </h1>
+                            <h1> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#"><img src="css/TMPS000136.png" alt=""></a> </h1>
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="menu">
                             <div class="mobile-nav-container"> </div>
-                            <div class="mobile-nav-btn"><img class="nav-open" src="./indexUpdated_files/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="./indexUpdated_files/nav-close.png" alt="Nav Button Close"> </div>
+                            <div class="mobile-nav-btn"><img class="nav-open" src="css/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="css/nav-close.png" alt="Nav Button Close"> </div>
                             <nav>
                                 <ul>
                                     <li><a href="reg.jsp">Register</a></li>
@@ -62,7 +62,7 @@
         <h1>Restaurants</h1>
         <c:forEach items="${restList}" var="item">
             <h3>Name: ${item.getName()}</br></h3>
-            <span>Phone: ${item.getPhone()}</br> </span>
+            <span>Address: ${item.getStreet()}, ${item.getStateLoc}, ${item.getZip}</br> </span>
         </c:forEach>
     </body>
 </html>
