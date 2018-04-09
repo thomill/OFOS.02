@@ -62,7 +62,7 @@
         <h1>Restaurants</h1>
         <c:forEach items="${restList}" var="item">
             <h3>Name: ${item.getName()}</br></h3>
-            <span>Address: ${item.getStreet()}, ${item.getStateLoc}, ${item.getZip}</br> </span>
+            <span>Address: ${item.getStreet()}, ${item.getStateLoc()}, ${item.getZip()}</br> </span>
         </c:forEach>
     </body>
 </html>
