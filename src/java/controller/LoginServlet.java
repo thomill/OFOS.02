@@ -6,12 +6,9 @@
 package controller;
 
 import DAO.AccountDAO;
-import DAO.RestaurantDAO;
 import Entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,12 +20,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Tom
  */
-@WebServlet(name = "Controller",
+@WebServlet(name = "Login",
         loadOnStartup = 1,
         urlPatterns = {
-            "/mainlogin",
-            "/restaurants"})
-public class ControllerServlet extends HttpServlet {
+            "/login",
+            "/logout"})
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +44,10 @@ public class ControllerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerServlet</title>");
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControllerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,23 +65,17 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //processRequest(request, response);
 
         String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
 
-        // testing to return a list of restaurants
-        if (userPath.equals("/restaurants")) {
+        // if the logout path is requested
+        if (userPath.equals("/logout")) {
 
-            String page = "restaurants.jsp";
+            session.invalidate();
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
 
-            // accept a list of restaurants from restaurants.java
-            RestaurantDAO dao = new RestaurantDAO();
-            List list = dao.getRestaurantList();
-
-            request.setAttribute("restList", list);
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            if (dispatcher != null) {
-                dispatcher.forward(request, response);
-            }
         }
     }
 
@@ -101,7 +92,26 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
 
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
 
+        String uname = request.getParameter("username");
+        String pass = request.getParameter("pass");
+
+        // if login function is called
+        if (userPath.equals("/login")) {
+
+            AccountDAO dao = new AccountDAO();
+
+            if (dao.check(uname, pass)) {
+                Account user = new Account();
+                user.setEmail(uname);
+                session.setAttribute("account", user);
+                response.sendRedirect("index.jsp");
+            } else {
+                response.sendRedirect("success.jsp");
+            }
+        }
     }
 
     /**

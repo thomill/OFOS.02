@@ -46,6 +46,7 @@ public class RestaurantDAO {
             while (rs.next()) {
                 Restaurant restaurant = new Restaurant();
                 restaurant.setName(rs.getString("name"));
+                restaurant.setStreet(rs.getString("street"));
                 restaurantList.add(restaurant);
             }
             return restaurantList;
