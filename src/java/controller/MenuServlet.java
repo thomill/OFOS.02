@@ -23,7 +23,10 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "MenuServlet",
         loadOnStartup = 1,
-        urlPatterns = {"/WingStop"})
+        urlPatterns = {"/WingStop",
+            "/FirehouseSubs",
+            "/PandaExpress",
+            "/PoblanoBurritos"})
 public class MenuServlet extends HttpServlet {
 
     /**
@@ -43,7 +46,7 @@ public class MenuServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MenuServlet</title>");            
+            out.println("<title>Servlet MenuServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MenuServlet at " + request.getContextPath() + "</h1>");
@@ -65,18 +68,50 @@ public class MenuServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
-        
-        if (userPath.equals("/WingStop")) { //restID = 1
-            String page = "wingstop.jsp";
-            
-            // access a class called RestaurantUtil
 
+        if (userPath.equals("/WingStop")) { //restID = 1
+            String page = "menus/wingstop.jsp";
+
+            // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(1);
             request.setAttribute("menu", menu);
-            
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            }
+        } else if (userPath.equals("/FirehouseSubs")) { //restID = 1
+            String page = "menus/firehousesubs.jsp";
+
+            // access a class called RestaurantUtil
+            List menu = RestaurantUtil.getMenu(2);
+            request.setAttribute("menu", menu);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            }
+        } else if (userPath.equals("/PoblanoBurritos")) { //restID = 1
+            String page = "menus/poblanoburritos.jsp";
+
+            // access a class called RestaurantUtil
+            List menu = RestaurantUtil.getMenu(3);
+            request.setAttribute("menu", menu);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            }
+        } else if (userPath.equals("/PandaExpress")) { //restID = 1
+            String page = "menus/pandaexpress.jsp";
+
+            // access a class called RestaurantUtil
+            List menu = RestaurantUtil.getMenu(4);
+            request.setAttribute("menu", menu);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
