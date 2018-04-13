@@ -40,13 +40,17 @@ public class RestaurantDAO {
 
             // query DB
             Statement st = con.createStatement();
-            rs = st.executeQuery("select name from Restaurant");
+            rs = st.executeQuery("SELECT * FROM Restaurant");
 
             // add query results to list
             while (rs.next()) {
                 Restaurant restaurant = new Restaurant();
                 restaurant.setName(rs.getString("name"));
                 restaurant.setStreet(rs.getString("street"));
+                restaurant.setCity(rs.getString("city"));
+                restaurant.setStateLoc(rs.getString("stateLoc"));
+                restaurant.setZip(rs.getInt("zip"));
+                restaurant.setPhone(rs.getString("phone"));
                 restaurantList.add(restaurant);
             }
             return restaurantList;
