@@ -5,9 +5,6 @@
  */
 package controller;
 
-import DAO.AccountDAO;
-import DAO.RestaurantDAO;
-import Entity.Account;
 import Util.RestaurantUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,12 +21,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Tom
  */
-@WebServlet(name = "Controller",
+@WebServlet(name = "MenuServlet",
         loadOnStartup = 1,
-        urlPatterns = {
-            "/mainlogin",
-            "/restaurants"})
-public class ControllerServlet extends HttpServlet {
+        urlPatterns = {"/WingStop"})
+public class MenuServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,10 +43,10 @@ public class ControllerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerServlet</title>");
+            out.println("<title>Servlet MenuServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControllerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MenuServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,27 +64,24 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        //processRequest(request, response);
+        
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
+        
+        if (userPath.equals("/WingStop")) { //restID = 1
+            String page = "wingstop.jsp";
+            
+            // access a class called RestaurantUtil
 
-        // if restaurants page is requested
-        if (userPath.equals("/restaurants")) {
-
-            String page = "restaurants.jsp";
-
-            // accept a list of restaurants from restaurants.java
-            RestaurantDAO dao = new RestaurantDAO();
-            List list = dao.getRestaurantList();
-
-            request.setAttribute("restList", list);
+            List menu = RestaurantUtil.getMenu(1);
+            request.setAttribute("menu", menu);
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
-            }      
-        } 
-            
-        
+            }
+        }
     }
 
     /**
@@ -103,9 +95,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
-
+        processRequest(request, response);
     }
 
     /**

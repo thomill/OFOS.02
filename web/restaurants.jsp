@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix = "fn" 
+   uri = "http://java.sun.com/jsp/jstl/functions" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -61,7 +63,7 @@
         </section>
         <h1>Restaurants</h1>
         <c:forEach items="${restList}" var="item">
-            Name: <a href="${item.getName()}"> ${item.getName()}</br></a>
+            Name: <a href="${fn:replace(item.getName(),' ', '')}"> ${item.getName()}</br></a>
             <span>Address: ${item.getStreet()}, ${item.getCity()}, ${item.getStateLoc()}  ${item.getZip()}</br> </span>
         </c:forEach>
     </body>

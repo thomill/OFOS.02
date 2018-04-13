@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Entity.Item;
 import Entity.Restaurant;
 import java.sql.*;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class RestaurantDAO {
             // add query results to list
             while (rs.next()) {
                 Restaurant restaurant = new Restaurant();
+                restaurant.setRestId((Integer) rs.getInt("restID"));
                 restaurant.setName(rs.getString("name"));
                 restaurant.setStreet(rs.getString("street"));
                 restaurant.setCity(rs.getString("city"));
@@ -58,6 +60,40 @@ public class RestaurantDAO {
             Logger.getLogger(RestaurantDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return restaurantList;
+    }
+
+    public List<Item> getMenu(int restID) {
+        List<Item> menu = new ArrayList();
+
+        //connect to DB
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RestaurantDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
+                    "root", "root");
+
+            // query DB
+            Statement st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM Item "
+                             +   "WHERE restID = " + restID);
+
+            // add query results to list
+            while (rs.next()) {
+                Item menuItem = new Item();
+                menuItem.setItemName(rs.getString("itemName"));
+
+                menu.add(menuItem);
+            }
+            return menu;
+        } catch (SQLException ex) {
+            Logger.getLogger(RestaurantDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return menu;
     }
 
 }
