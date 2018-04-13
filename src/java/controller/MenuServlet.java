@@ -83,6 +83,7 @@ public class MenuServlet extends HttpServlet {
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
             }
+            
         } else if (userPath.equals("/FirehouseSubs")) { //restID = 1
             String page = "menus/firehousesubs.jsp";
 

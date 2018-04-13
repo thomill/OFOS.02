@@ -32,7 +32,7 @@
                 <div class="row clearfix" id="home">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="logo">
-                            <h1> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#"><img src="css/TMPS000136.png" alt=""></a> </h1>
+                            <h1> <a href="index.jsp"><img src="css/TMPS000136.png" alt=""></a> </h1>
                         </div>
                     </div>
 
@@ -48,9 +48,11 @@
                             <div class="mobile-nav-btn"><img class="nav-open" src="css/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="css/nav-close.png" alt="Nav Button Close"> </div>
                             <nav>
                                 <ul>
+                                    <li><a href="index.jsp">Home</a></li>
                                     <li><a href="reg.jsp">Register</a></li>
                                     <li>
-                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { 
+                                        %> <a href="mainlogin.jsp">Login</a>
                                         <%} else {
                                         %><a href="logout">Logout</a></li> <% }%>
                                     <li><a href="restaurants">Restaurants</a></li>
