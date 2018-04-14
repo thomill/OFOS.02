@@ -45,10 +45,16 @@
                             <nav>
                                 <ul>
                                     <li><a href="index.jsp">Home</a></li>
+                                    <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                    <li>                                        
+                                        <a href="mainlogin.jsp">Login</a>
+                                    </li>
                                     <li><a href="reg.jsp">Register</a></li>
+                                        <%} else {
+                                        %>
+                                        <% } %>
                                     <li>
                                         <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
-                                        <a href="mainlogin.jsp">Login</a>
                                         <%} else {
                                         %><a href="logout">Logout</a></li> <% }%>
                                     <li><a href="restaurants">Restaurants</a></li>

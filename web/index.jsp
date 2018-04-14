@@ -49,9 +49,7 @@
                             <div class="mobile-nav-btn"><img class="nav-open" src="css/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="css/nav-close.png" alt="Nav Button Close"> </div>
                             <nav>
                                 <ul>
-                                    <%
-                                        if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) {
-                                    %>
+                                    <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                     <li>                                        
                                         <a href="mainlogin.jsp">Login</a>
                                     </li>
@@ -60,15 +58,13 @@
                                         %>
                                     <li>
                                         <a>Welcome ${account.getEmail()}</a>
-                                        <%
-                                            }
-                                        %></li>
+                                    </li>
+                                        <% } %>
                                     <li>
                                         <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                         <%} else {
                                         %><a href="logout">Logout</a></li> <% }%>
                                     <li><a href="restaurants">Restaurants</a></li>
-
                                 </ul>
                         </div>
                     </div>
