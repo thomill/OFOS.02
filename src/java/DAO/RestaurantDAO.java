@@ -84,7 +84,9 @@ public class RestaurantDAO {
             // add query results to list
             while (rs.next()) {
                 Item menuItem = new Item();
+                menuItem.setItemId(rs.getInt("itemID"));
                 menuItem.setItemName(rs.getString("itemName"));
+                
 
                 menu.add(menuItem);
             }

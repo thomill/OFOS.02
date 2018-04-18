@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
     <html>
     <head>
@@ -69,8 +71,16 @@
         
         <h1>Welcome to Firehouse Subs!</h1>
         <h1>Menu</h1>
-        <c:forEach items="${menu}" var="item">
-            ${item.getItemName()}</br>
+        
+        <c:forEach items="${menu}" var="item" varStatus="status">
+            ${item.getItemName()}   <form action="<c:url value="addToCart"/>" method="post">
+                        <input type="hidden"
+                               name="itemId"
+                               value="${status.count}">
+                        <input type="submit"
+                               name="submit"
+                               value="<fmt:message key='addToCart'/>">
+                    </form></br>
         </c:forEach>
     </body>
 </html>

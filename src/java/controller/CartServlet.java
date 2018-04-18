@@ -6,9 +6,12 @@
 package controller;
 
 import Entity.CustomerOrder;
-import Util.RestaurantUtil;
+import Entity.Item;
+import Entity.OrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,13 +25,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Tom
  */
-@WebServlet(name = "MenuServlet",
-        loadOnStartup = 1,
-        urlPatterns = {"/WingStop",
-            "/FirehouseSubs",
-            "/PandaExpress",
-            "/PoblanoBurritos"})
-public class MenuServlet extends HttpServlet {
+@WebServlet(name = "Cart",
+            loadOnStartup = 1,
+            urlPatterns = {"/addToCart",
+                           "/viewCart",
+                           "/removeFromCart"})
+public class CartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +49,10 @@ public class MenuServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MenuServlet</title>");
+            out.println("<title>Servlet cartServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MenuServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet cartServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,60 +70,7 @@ public class MenuServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
-        String userPath = request.getServletPath();
-        HttpSession session = request.getSession();
-
-        if (userPath.equals("/WingStop")) { //restID = 1
-            String page = "menus/wingstop.jsp";
-
-            // access a class called RestaurantUtil
-            List menu = RestaurantUtil.getMenu(1);
-            request.setAttribute("menu", menu);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            if (dispatcher != null) {
-                dispatcher.forward(request, response);
-            }
-            
-        } else if (userPath.equals("/FirehouseSubs")) { //restID = 1
-            String page = "menus/firehousesubs.jsp";
-
-            // access a class called RestaurantUtil
-            List menu = RestaurantUtil.getMenu(2);
-            session.setAttribute("menu", menu);
-           
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            if (dispatcher != null) {
-                dispatcher.forward(request, response);
-            }
-        } else if (userPath.equals("/PoblanoBurritos")) { //restID = 1
-            String page = "menus/poblanoburritos.jsp";
-
-            // access a class called RestaurantUtil
-            List menu = RestaurantUtil.getMenu(3);
-            request.setAttribute("menu", menu);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            if (dispatcher != null) {
-                dispatcher.forward(request, response);
-            }
-        } else if (userPath.equals("/PandaExpress")) { //restID = 1
-            String page = "menus/pandaexpress.jsp";
-
-            // access a class called RestaurantUtil
-            List menu = RestaurantUtil.getMenu(4);
-            request.setAttribute("menu", menu);
-            
-            
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            if (dispatcher != null) {
-                dispatcher.forward(request, response);
-            }
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -135,7 +84,38 @@ public class MenuServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
+        List<OrderItem> cart = (List) session.getAttribute("cart");
+        List menu = (List) session.getAttribute("menu");
+        
+        if (userPath.equals("/addToCart")) {
+
+            // if user is adding item to cart for first time
+            // create cart object and attach it to user session
+            if (cart == null) {
+
+                cart = new ArrayList();
+                session.setAttribute("cart", cart);
+            }
+
+            // get user input from request
+            int itemID = parseInt(request.getParameter("itemId"));
+
+
+            Item newItem = (Item) menu.get(itemID-1);
+            OrderItem newerItem = new OrderItem();
+            newerItem.setItem(newItem);
+            cart.add(newerItem);
+            session.setAttribute("cart", cart);
+            
+            String page = "cart.jsp";
+               RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            }
+
+        }
     }
 
     /**

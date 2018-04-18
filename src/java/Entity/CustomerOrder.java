@@ -7,6 +7,7 @@ package Entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -60,7 +61,7 @@ public class CustomerOrder implements Serializable {
     @ManyToOne(optional = false)
     private Customer custId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
-    private Collection<OrderItem> orderItemCollection;
+    private Collection<OrderItem> orderItemCollection = new ArrayList();
 
     public CustomerOrder() {
     }
@@ -114,6 +115,10 @@ public class CustomerOrder implements Serializable {
 
     public void setOrderItemCollection(Collection<OrderItem> orderItemCollection) {
         this.orderItemCollection = orderItemCollection;
+    }
+    
+    public void addItem(OrderItem item) {
+        orderItemCollection.add(item);
     }
 
     @Override
