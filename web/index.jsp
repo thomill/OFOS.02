@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- saved from url=(0097)file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#offer -->
+
 <html style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface no-generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <title>food</title>
+        <title>Order Food Online</title>
         <link href="css/css" rel="stylesheet" type="text/css">
         <link href="css/css(1)" rel="stylesheet" type="text/css">
 
@@ -13,7 +13,6 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-        <!--<link rel="stylesheet" type="text/css" href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/css/animate.css">-->
         <link rel="stylesheet" type="text/css" href="css/responsive.css">
 
         <!--JS-->
@@ -34,7 +33,7 @@
                 <div class="row clearfix" id="home">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="logo">
-                            <h1> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#"><img src="css/TMPS000136.png" alt=""></a> </h1>
+                            <h1> <a href="index.jsp"><img src="css/TMPS000136.png" alt=""></a> </h1>
                         </div>
                     </div>
 
@@ -50,24 +49,22 @@
                             <div class="mobile-nav-btn"><img class="nav-open" src="css/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="css/nav-close.png" alt="Nav Button Close"> </div>
                             <nav>
                                 <ul>
-                                    <li>
-                                        <%
-                                            if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) {
-                                        %>
+                                    <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                    <li>                                        
                                         <a href="mainlogin.jsp">Login</a>
+                                    </li>
+                                    <li><a href="reg.jsp">Register</a></li>
                                         <%} else {
                                         %>
+                                    <li>
                                         <a>Welcome ${account.getEmail()}</a>
-                                        <%
-                                            }
-                                        %></li>
-                                    <li><a href="reg.jsp">Register</a></li>
+                                    </li>
+                                        <% } %>
                                     <li>
                                         <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                         <%} else {
                                         %><a href="logout">Logout</a></li> <% }%>
                                     <li><a href="restaurants">Restaurants</a></li>
-
                                 </ul>
                         </div>
                     </div>
