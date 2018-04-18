@@ -37,7 +37,7 @@ public class RestaurantDAO {
 
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
-                    "root", "1234");
+                    "root", "root");
 
             // query DB
             Statement st = con.createStatement();
