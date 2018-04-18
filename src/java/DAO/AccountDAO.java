@@ -26,7 +26,7 @@ public class AccountDAO {
         }
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
-                    "root", "root");
+                    "root", "1234");
             Statement st = con.createStatement();
         ResultSet rs;
         rs = st.executeQuery("select * from Account where email='" + username + "' and password='" + password + "'");

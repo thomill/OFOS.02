@@ -3,3 +3,6 @@
 /build/
 src/java/DAO/AccountDAO.java
 nbproject/project.properties
+nbproject/project.properties
+src/java/DAO/AccountDAO.java
+src/java/DAO/RestaurantDAO.java
