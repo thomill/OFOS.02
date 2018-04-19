@@ -8,22 +8,27 @@
 <!DOCTYPE html>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix = "fn" 
-   uri = "http://java.sun.com/jsp/jstl/functions" %>
+           uri = "http://java.sun.com/jsp/jstl/functions" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Restaurants</title>
 
-        <!--CSS---->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <!--CSS---->            
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-        <link rel="stylesheet" type="text/css" href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/css/animate.css">
         <link rel="stylesheet" type="text/css" href="css/responsive.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/menuStyle.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
     <body>
-                <!-- Paste this code after body tag -->
+        <!-- Paste this code after body tag -->
         <div class="se-pre-con" style="display: none;"></div>
         <!-- Ends -->
 
@@ -49,7 +54,7 @@
                             <nav>
                                 <ul>
                                     <li><a href="index.jsp">Home</a></li>
-                                    <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                     <li>                                        
                                         <a href="mainlogin.jsp">Login</a>
                                     </li>
@@ -69,9 +74,15 @@
             </div>
         </section>
         <h1>Restaurants</h1>
-        <c:forEach items="${restList}" var="item">
-            Name: <a href="${fn:replace(item.getName(),' ', '')}"> ${item.getName()}</br></a>
-            <span>Address: ${item.getStreet()}, ${item.getCity()}, ${item.getStateLoc()}  ${item.getZip()}</br> </span>
-        </c:forEach>
-    </body>
+        <table >
+            <c:forEach items="${restList}" var="item" varStatus="status">
+                <tr class="${((status.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                    <td>
+                        <span><a href="${fn:replace(item.getName(),' ', '')}"> ${item.getName()}</br></a></span>
+                        <span>${item.getStreet()}, ${item.getCity()}, ${item.getStateLoc()}  ${item.getZip()}</br> </span>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+</body>
 </html>

@@ -41,7 +41,7 @@
             </div>
         </header>
 
-        <!--        Navbar-->
+        <!--Navbar-->
         <section class="saction1">
             <div class="container">
                 <div class="row">
@@ -66,7 +66,7 @@
                                         %><a href="logout">Logout</a></li> <% }%>
                                     <li><a href="restaurants">Restaurants</a></li>
                                 </ul>
-                        </div>
+                        </div>       
                     </div>
                 </div>
             </div>
