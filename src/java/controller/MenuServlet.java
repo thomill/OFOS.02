@@ -78,7 +78,7 @@ public class MenuServlet extends HttpServlet {
 
             // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(1);
-            request.setAttribute("menu", menu);
+            session.setAttribute("menu", menu);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
@@ -102,7 +102,7 @@ public class MenuServlet extends HttpServlet {
 
             // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(3);
-            request.setAttribute("menu", menu);
+            session.setAttribute("menu", menu);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
@@ -113,7 +113,7 @@ public class MenuServlet extends HttpServlet {
 
             // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(4);
-            request.setAttribute("menu", menu);
+            session.setAttribute("menu", menu);
             
             
 

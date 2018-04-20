@@ -102,7 +102,6 @@ public class CartServlet extends HttpServlet {
             // get user input from request
             int itemID = parseInt(request.getParameter("itemId"));
 
-
             Item newItem = (Item) menu.get(itemID-1);
             OrderItem newerItem = new OrderItem();
             newerItem.setItem(newItem);

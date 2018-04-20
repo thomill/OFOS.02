@@ -81,13 +81,13 @@
                     <td>${item.getItemName()}</td>
                     <!-- Button trigger modal -->
                     <td>
-                        <button type="button" class="btn btn-primary menuItem" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary menuItem" data-toggle="modal" data-target="#menuModal${status.index}">
                             Add to Cart
                         </button>
                     </td>
 
                     <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="menuModal${status.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -98,6 +98,7 @@
                             </div>
                             <div class="modal-body">
                                 <form class ="btn btn-secondary" action="<c:url value="addToCart"/>" method="post">
+                                    <h3>${item.getItemName()}</h3>
                                     <label for="quantity">Quantity</label>
                                     <input class="form-control"
                                            type="text"
