@@ -37,7 +37,7 @@ public class RestaurantDAO {
 
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
-                    "root", "1234");
+                    "root", "root");
 
             // query DB
             Statement st = con.createStatement();
@@ -86,8 +86,8 @@ public class RestaurantDAO {
                 Item menuItem = new Item();
                 menuItem.setItemId(rs.getInt("itemID"));
                 menuItem.setItemName(rs.getString("itemName"));
+                menuItem.setPrice(rs.getBigDecimal("price"));
                 
-
                 menu.add(menuItem);
             }
             return menu;

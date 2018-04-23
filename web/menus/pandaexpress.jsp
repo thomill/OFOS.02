@@ -7,17 +7,25 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
-    <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Panda Express</title>
 
-        <!--CSS---->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <!--CSS---->            
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="css/responsive.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/menuStyle.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -33,7 +41,7 @@
                 </div>
             </div>
         </header>
-        
+
         <!--        Navbar-->
         <section class="saction1">
             <div class="container">
@@ -45,7 +53,7 @@
                             <nav>
                                 <ul>
                                     <li><a href="index.jsp">Home</a></li>
-                                    <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                     <li>                                        
                                         <a href="mainlogin.jsp">Login</a>
                                     </li>
@@ -64,11 +72,58 @@
                 </div>
             </div>
         </section>
-        
+
         <h1>Welcome to Panda Express!</h1>
-        <h1>Menu</h1>
-        <c:forEach items="${menu}" var="item">
-            ${item.getItemName()}</br>
+        <h2>Menu</h2>
+        <table class="menuList">
+            <c:forEach items="${menu}" var="item" varStatus="status">
+                <tr class="${((status.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                    <td>${item.getItemName()}</td>
+                    <!-- Button trigger modal -->
+                    <td>
+                        <button type="button" class="btn btn-primary menuItem" data-toggle="modal" data-target="#menuModal${status.index}">
+                            Add to Cart
+                        </button>
+                    </td>
+
+                    <!-- Modal -->
+                <div class="modal fade" id="menuModal${status.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add to Cart</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class ="btn btn-secondary" action="<c:url value="addToCart"/>" method="post">
+                                    <label for="quantity">Quantity</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="quantity"
+                                           id="quantity">
+                                    <label for="customization">Customization:</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="customization">
+                                    <input type="hidden"
+                                           name="itemId"
+                                           value="${status.count}">
+                                    <input class="btn btn-primary"
+                                           type="submit"
+                                           name="submit"
+                                           value="Add to Cart">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
         </c:forEach>
-    </body>
+    </table>
+</body>
 </html>

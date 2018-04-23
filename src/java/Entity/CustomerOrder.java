@@ -120,6 +120,14 @@ public class CustomerOrder implements Serializable {
     public void addItem(OrderItem item) {
         orderItemCollection.add(item);
     }
+    
+    public void removeItem(OrderItem item) {
+        orderItemCollection.remove(item);
+    }
+    
+    public void clearOrder() {
+        orderItemCollection.clear();
+    }
 
     @Override
     public int hashCode() {
