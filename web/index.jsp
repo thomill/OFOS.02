@@ -59,7 +59,7 @@
                                     <li>
                                         <a>Welcome ${account.getEmail()}</a>
                                     </li>
-                                        <% } %>
+                                    <% } %>
                                     <li>
                                         <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                         <%} else {
@@ -85,85 +85,99 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="textbox os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
-                        <h3>Location Name</h3>
-                        <input type="text" placeholder="Secunderabad">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="textbox os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
-                        <h3>Restaurant Name</h3>
-                        <input type="text" placeholder="Swagath Grand">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="textbox1 os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
-                        <h3>Cuisine Name</h3>
-                        <input type="text" placeholder="Chicken Biriyani">
-                        <span class="search"><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#"><i class="fa fa-search"></i></a></span> </div>
-                </div>
-            </div>
-        </section>
 
-        <footer class="saction8">
-            <div class="container" id="contact">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                        <div class="site">
-                            <h3>Site Link</h3>
-                        </div>
-                        <div class="sitelink">
-                            <ul>
-                                <li> <span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">About Us</a></li>
-                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Contact Us</a></li>
-                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Privacy Policy</a></li>
-                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Terms of Use</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                        <div class="site">
-                            <h3>Site Link</h3>
-                        </div>
-                        <div class="sitelink">
-                            <ul>
-                                <li> <span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">About Us</a></li>
-                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Contact Us</a></li>
-                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Privacy Policy</a></li>
-                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Terms of Use</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                        <div class="follow">
-                            <h3>Follow Us On...</h3>
-                        </div>
-                        <div class="social">
-                            <ul>
-                                <li> <i class="fa fa-facebook-square"></i><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Facebook</a></li>
-                                <li><i class="fa fa-twitter-square"></i><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Twitter</a></li>
-                                <li><i class="fa fa-linkedin-square"></i><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Linkedin</a></li>
-                                <li><i class="fa fa-google-plus-square"></i><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Google Plus</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                        <div class="submit">
-                            <h3>Subscribe Newsletter</h3>
-                            <p>To get latest updates and food deals
-                                every week</p>
-                        </div>
-                        <div class="submitbox">
-                            <input type="text">
-                            <div class="sub"> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Submit</a> </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+                <!--                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <div class="textbox os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
+                                        <h3>Restaurant Name</h3>
+                                        <form action="demo_form.asp" method="get">
+                                            <input type="text" name="searchRest"><br>
+                                            <input type="submit" value="Submit">
+                                        </form>
+                                    </div>-->
+                <div class="textbox os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
+                    <div class="select-wrapper">
+                        <select name="list" id="list" accesskey="target">
+                            <option value='none' selected>Choose a restaurant</option>
+                            <option value="http://localhost:8080/OFOS.02/FirehouseSubs">Firehouse Subs</option>
+                            <option value="http://localhost:8080/OFOS.02/PandaExpress">Panda Express</option>
+                            <option value="http://localhost:8080/OFOS.02/PoblanoBurriots">Poblano Burritios</option>
+                            <option value="http://localhost:8080/OFOS.02/WingStop">Wing Stop</option>
+                            <select>
+                                <input type=button value="Go" onclick="goToNewPage()" />
+                                <script type="text/javascript">
+                                    function goToNewPage()
+                                    {
+                                        var url = document.getElementById('list').value;
+                                        if (url != 'none') {
+                                            window.location = url;
+                                        }
+                                    }
+                                </script>
+                                </div>
+                                </div>
+                                </div>
 
-        <script type="text/javascript" src="css/sidemenu.js.download"></script>
+                                </div>
+                                </section>
+
+                                <footer class="saction8">
+                                    <div class="container" id="contact">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                <!--                        <div class="site">
+                                                                            <h3>Site Link</h3>
+                                                                        </div>
+                                                                        <div class="sitelink">
+                                                                            <ul>
+                                                                                <li> <span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">About Us</a></li>
+                                                                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Contact Us</a></li>
+                                                                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Privacy Policy</a></li>
+                                                                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Terms of Use</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                        <div class="site">
+                                                                            <h3>Site Link</h3>
+                                                                        </div>
+                                                                        <div class="sitelink">
+                                                                            <ul>
+                                                                                <li> <span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">About Us</a></li>
+                                                                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Contact Us</a></li>
+                                                                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Privacy Policy</a></li>
+                                                                                <li><span>?</span><a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Terms of Use</a></li>
+                                                                            </ul>
+                                                                        </div>-->
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                <div class="follow">
+                                                    <h3>Follow Us On...</h3>
+                                                </div>
+                                                <div class="social">
+                                                    <ul>
+                                                        <li> <i class="fa fa-facebook-square"></i><a href="https://www.facebook.com/mrdeliveryusa">Facebook</a></li>
+                                                        <li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/mrdelivery">Twitter</a></li>
+                                                        <li><i class="fa fa-linkedin-square"></i><a href="https://www.linkedin.com/company/mr-delivery-usa/">Linkedin</a></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!--                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                                                    <div class="submit">
+                                                                        <h3>Subscribe Newsletter</h3>
+                                                                        <p>To get latest updates and food deals
+                                                                            every week</p>
+                                                                    </div>
+                                                                    <div class="submitbox">
+                                                                        <input type="text">
+                                                                        <div class="sub"> <a href="file:///C:/Users/Christian/Desktop/IT%20341/OFOS1-master/OFOS1-master/WebContent/index.html#">Submit</a> </div>
+                                                                    </div>
+                                                                </div>-->
+                                        </div>
+                                    </div>
+                                </footer>
+
+                                <script type="text/javascript" src="css/sidemenu.js.download"></script>
 
 
-    </body></html>
+                                </body></html>
