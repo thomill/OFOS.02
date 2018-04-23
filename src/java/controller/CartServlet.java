@@ -29,7 +29,8 @@ import javax.servlet.http.HttpSession;
             loadOnStartup = 1,
             urlPatterns = {"/addToCart",
                            "/viewCart",
-                           "/removeFromCart"})
+                           "/removeFromCart",
+                           "/clearCart"})
 public class CartServlet extends HttpServlet {
 
     /**
@@ -70,7 +71,41 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
+        List<OrderItem> cart = (List) session.getAttribute("cart");
+        List menu = (List) session.getAttribute("menu");
+        
+        if (userPath.equals("/clearCart")) {
+            
+            if (cart == null) {
+                System.out.println("No cart Exists");
+            } else {
+                cart.clear();
+            }
+            String page = "cart.jsp";
+               RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            }            
+        } else if (userPath.equals("/removeFromCart")) {
+            int itemID =  parseInt(request.getParameter("itemId"));
+            OrderItem item = cart.get(itemID-1);
+            if (cart == null) {
+                System.out.println("No cart Exists");
+            } else {
+                cart.remove(item);
+                
+            }
+            String page = "cart.jsp";
+               RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
+            } 
+        }
+        
+        
     }
 
     /**
@@ -101,10 +136,14 @@ public class CartServlet extends HttpServlet {
 
             // get user input from request
             int itemID = parseInt(request.getParameter("itemId"));
+            int quantity = parseInt(request.getParameter("quantity"));
+            String customization = request.getParameter("customization");
 
             Item newItem = (Item) menu.get(itemID-1);
             OrderItem newerItem = new OrderItem();
             newerItem.setItem(newItem);
+            newerItem.setQuantity(quantity);
+            newerItem.setCustomization(customization);
             cart.add(newerItem);
             session.setAttribute("cart", cart);
             
@@ -115,6 +154,22 @@ public class CartServlet extends HttpServlet {
             }
 
         }
+        
+//        if (userPath.equals("/removeFromCart")) {
+//            
+//            int itemID = parseInt(request.getParameter("itemId"));
+//            OrderItem item = cart.get(itemID-1);
+//            if (cart == null) {
+//                System.out.println("No cart Exists");
+//            } else {
+//                cart.remove(item);
+//            }
+//            String page = "cart.jsp";
+//               RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+//            if (dispatcher != null) {
+//                dispatcher.forward(request, response);
+//            }
+//        }
     }
 
     /**

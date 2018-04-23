@@ -13,11 +13,88 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <!--CSS---->            
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/menuStyle.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     </head>
     <body>
-        Cart
-        <c:forEach items="${cart}" var="item">
-            ${item.getItem().getItemName()}</br>
-        </c:forEach> 
+        <!-- header -->
+        <header>
+            <div class="container">
+                <div class="row clearfix" id="home">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="logo">
+                            <h1> <a href="index.jsp"><img src="css/TMPS000136.png" alt=""></a> </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!--Navbar-->
+        <section class="saction1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="menu">
+                            <div class="mobile-nav-container"> </div>
+                            <div class="mobile-nav-btn"><img class="nav-open" src="css/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="css/nav-close.png" alt="Nav Button Close"> </div>
+                            <nav>
+                                <ul>
+                                    <li><a href="index.jsp">Home</a></li>
+                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                    <li>                                        
+                                        <a href="mainlogin.jsp">Login</a>
+                                    </li>
+                                    <li><a href="reg.jsp">Register</a></li>
+                                        <%} else {
+                                        %>
+                                        <% } %>
+                                    <li>
+                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                        <%} else {
+                                        %><a href="logout">Logout</a></li> <% }%>
+                                    <li><a href="restaurants">Restaurants</a></li>
+                                </ul>
+                        </div>       
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h2>Cart</h2>
+        <table class="cartList">
+        <c:forEach items="${cart}" var="item" varStatus="status">
+            <tr class="${((status.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                <td>${item.getItem().getItemName()} </td>
+                <td>$ ${item.getItem().getPrice()}</td>
+                <td><form class="btn btn-default" action="<c:url value="removeFromCart"/>">
+                        <input type="hidden"
+                               name="itemId"
+                               value="${status.count}">
+                        <input class="btn btn-primary"
+                               type="submit"
+                               name="submit"
+                               value="Remove From Cart">
+                    </form></td>
+            </tr>
+        </c:forEach>
+        </table>
+            <a class="btn btn-default" href="clearCart">Clear cart</a>   
+            <script>
+                function remove() {
+                    
+                    console.log("sopmething");
+                }
+                </script>
+                
     </body>
 </html>

@@ -19,9 +19,7 @@ public class RestaurantUtil {
         List<Item> menu = new ArrayList();
         RestaurantDAO dao = new RestaurantDAO();
         menu =dao.getMenu(restID);
-        
-        
-        
+
         return menu;
     }
     

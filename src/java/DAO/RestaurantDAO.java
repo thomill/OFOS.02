@@ -86,8 +86,8 @@ public class RestaurantDAO {
                 Item menuItem = new Item();
                 menuItem.setItemId(rs.getInt("itemID"));
                 menuItem.setItemName(rs.getString("itemName"));
+                menuItem.setPrice(rs.getBigDecimal("price"));
                 
-
                 menu.add(menuItem);
             }
             return menu;
