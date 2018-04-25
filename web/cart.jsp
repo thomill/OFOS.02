@@ -72,11 +72,18 @@
         </section>
         <h2>Cart</h2>
         <table class="cartList">
+            <tr>
+                <th class="col-md-2">Item</th>
+                <th class="col-md-1">Price</th>
+                <th class="col-md-1">Quantity</th>
+            </tr>
+        <c:set var="total" value="${0}"/>
         <c:forEach items="${cart}" var="item" varStatus="status">
             <tr class="${((status.index % 2) == 0) ? 'lightBlue' : 'white'}">
                 <td>${item.getItem().getItemName()} </td>
-                <td>$ ${item.getItem().getPrice()}</td>
-                <td><form class="btn btn-default" action="<c:url value="removeFromCart"/>">
+                <td>$${item.getItem().getPrice()}</td>
+                <td>${item.getQuantity()}</td>
+                <td><form class="" action="<c:url value="removeFromCart"/>">
                         <input type="hidden"
                                name="itemId"
                                value="${status.count}">
@@ -86,15 +93,23 @@
                                value="Remove From Cart">
                     </form></td>
             </tr>
+            <c:set var="total" value="${total + item.getItem().getPrice() * item.getQuantity()}" />
         </c:forEach>
         </table>
-            <a class="btn btn-default" href="clearCart">Clear cart</a>   
-            <script>
-                function remove() {
-                    
-                    console.log("sopmething");
-                }
-                </script>
-                
+        <div>
+                Total: $${total}
+        </div>
+    
+         <form action="${initParam['posturl']}" method="post">
+            <input type="hidden" name="upload" value="1"/>
+            <input type="hidden" name="return" value="${initParam['returnurl']}"/>
+            <input type="hidden" name="cmd" value="_cart"/>
+            <input type="hidden" name="business" value="${initParam['business']}"/>
+
+            <input type="hidden" name="amount_1" value="${total}"/>
+            <input class="btn btn-primary" type="submit" value="Place Order"/>
+        </form>
+        <a class="btn btn-default" href="clearCart">Clear cart</a>   
+      
     </body>
 </html>

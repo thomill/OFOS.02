@@ -76,9 +76,16 @@
         <h1>Welcome to Panda Express!</h1>
         <h2>Menu</h2>
         <table class="menuList">
+            <tr>
+                <th class="col-md-2">Item</th>
+                <th class="col-md-1">Price</th>
+                <th class="col-md-3">Description</th>
+            </tr>
             <c:forEach items="${menu}" var="item" varStatus="status">
                 <tr class="${((status.index % 2) == 0) ? 'lightBlue' : 'white'}">
                     <td>${item.getItemName()}</td>
+                    <td>$${item.getPrice()}</td>
+                    <td>${item.getDescription()}</td>
                     <!-- Button trigger modal -->
                     <td>
                         <button type="button" class="btn btn-primary menuItem" data-toggle="modal" data-target="#menuModal${status.index}">
@@ -101,6 +108,7 @@
                                     <label for="quantity">Quantity</label>
                                     <input class="form-control"
                                            type="text"
+                                           value="1"
                                            name="quantity"
                                            id="quantity">
                                     <label for="customization">Customization:</label>
