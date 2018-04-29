@@ -23,4 +23,17 @@ public class RestaurantUtil {
         return menu;
     }
     
+    public static double getRating(int restID) {
+        double rating = 0;
+        RestaurantDAO dao = new RestaurantDAO();
+        rating = dao.getRating(restID);
+        return rating;
+    }
+    
+    public static void rateRestaurant(double rating, int restID) {
+        RestaurantDAO dao = new RestaurantDAO();
+        dao.rateRestaurant(rating, restID);
+        
+    }
+    
 }

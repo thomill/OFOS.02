@@ -75,6 +75,7 @@
 
         <h1>Welcome to Wing Stop!</h1>
         <h2>Menu</h2>
+        <h3>Rating: ${rating}/5</h3>
         <table class="menuList">
             <tr>
                 <th class="col-md-2">Item</th>

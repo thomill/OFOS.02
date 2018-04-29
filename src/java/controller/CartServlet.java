@@ -5,9 +5,11 @@
  */
 package controller;
 
+import Entity.Account;
 import Entity.CustomerOrder;
 import Entity.Item;
 import Entity.OrderItem;
+import Util.CartUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
@@ -30,7 +32,8 @@ import javax.servlet.http.HttpSession;
             urlPatterns = {"/addToCart",
                            "/viewCart",
                            "/removeFromCart",
-                           "/clearCart"})
+                           "/clearCart",
+                           "/placeOrder"})
 public class CartServlet extends HttpServlet {
 
     /**
@@ -123,6 +126,7 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         List<OrderItem> cart = (List) session.getAttribute("cart");
         List menu = (List) session.getAttribute("menu");
+        Account user = (Account) session.getAttribute("account");
         
         if (userPath.equals("/addToCart")) {
 
@@ -153,25 +157,16 @@ public class CartServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             }
 
+        } else if (userPath.equals("/placeOrder")) {
+            CartUtil.placeOrder(user.getEmail());
+            String page = "index.jsp";
+               RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+            if (dispatcher != null) {
+                dispatcher.forward(request, response);
         }
-        
-//        if (userPath.equals("/removeFromCart")) {
-//            
-//            int itemID = parseInt(request.getParameter("itemId"));
-//            OrderItem item = cart.get(itemID-1);
-//            if (cart == null) {
-//                System.out.println("No cart Exists");
-//            } else {
-//                cart.remove(item);
-//            }
-//            String page = "cart.jsp";
-//               RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-//            if (dispatcher != null) {
-//                dispatcher.forward(request, response);
-//            }
-//        }
-    }
 
+    }
+    }
     /**
      * Returns a short description of the servlet.
      *

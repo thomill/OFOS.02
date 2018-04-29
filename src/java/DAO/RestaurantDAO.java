@@ -79,7 +79,7 @@ public class RestaurantDAO {
             // query DB
             Statement st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM Item "
-                             +   "WHERE restID = " + restID);
+                    + "WHERE restID = " + restID);
 
             // add query results to list
             while (rs.next()) {
@@ -88,7 +88,7 @@ public class RestaurantDAO {
                 menuItem.setItemName(rs.getString("itemName"));
                 menuItem.setPrice(rs.getBigDecimal("price"));
                 menuItem.setDescription(rs.getString("description"));
-                
+
                 menu.add(menuItem);
             }
             return menu;
@@ -99,4 +99,75 @@ public class RestaurantDAO {
         return menu;
     }
 
+    public double getRating(int restID) {
+
+        double rating = 0;
+        double ratingTotal=0;
+        double numberOfRatings=0;
+        //connect to DB
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RestaurantDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
+                    "root", "root");
+
+            // query DB
+            Statement st = con.createStatement();
+            rs = st.executeQuery("SELECT ratingTotal, numberOfRatings FROM Restaurant "
+                    + "WHERE restID = " + restID);
+            if (rs.next()) {
+                ratingTotal = (double) rs.getFloat("ratingTotal");
+                numberOfRatings = (double)rs.getFloat("numberOfRatings");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RestaurantDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        rating = ratingTotal/numberOfRatings;
+        return rating;
+    }
+    
+    public void rateRestaurant(double rating, int restID) {
+        double ratingTotal=0;
+        double numberOfRatings=0;
+        double newTotal = 0;
+        double newNumber = 0;
+        //connect to DB
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RestaurantDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
+                    "root", "root");
+
+            // query DB
+            Statement st = con.createStatement();
+            rs = st.executeQuery("SELECT ratingTotal, numberOfRatings FROM Restaurant "
+                    + "WHERE restID = " + restID);
+            if (rs.next()) {
+                ratingTotal = (double) rs.getFloat("ratingTotal");
+                numberOfRatings = (double)rs.getFloat("numberOfRatings");
+            }
+            newTotal = ratingTotal+ rating;
+            newNumber = numberOfRatings + 1;
+            
+            Statement st1 = con.createStatement();
+            st1.executeUpdate("UPDATE Restaurant "
+                    + "SET ratingTotal = " + newTotal +", numberOfRatings = "+ newNumber
+                    + "WHERE restID = " + restID);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RestaurantDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
 }

@@ -4,6 +4,30 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <context-param>
+        
+        <param-name> authtoken</param-name>
+        <param-value>AW5YcxHWmMakqNHfkLRiZzGKj.E6AYVJGxjIOLhIslNx.B9yN7N92nVf</param-value>
+           
+    </context-param>
+    <context-param>
+        
+        <param-name> posturl</param-name>
+        <param-value>https://www.sandbox.paypal.com/cgi-bin/webscr </param-value>
+           
+    </context-param>
+     <context-param>
+        
+        <param-name> business</param-name>
+        <param-value> tjomhill@gmail.com</param-value>
+           
+    </context-param>
+     <context-param>
+        
+        <param-name> returnurl</param-name>
+        <param-value>http://localhost:8080/OFOS-Updated/payment.jsp </param-value>
+           
+    </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -29,22 +53,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
-    <!--    <servlet-mapping>
-        <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/ControllerServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MenuServlet</servlet-name>
-        <url-pattern>/MenuServlet</url-pattern>
-    </servlet-mapping>-->
-<!--    <servlet-mapping>
-        <servlet-name>cartServlet</servlet-name>
-        <url-pattern>/cartServlet</url-pattern>
-    </servlet-mapping>-->
+
     <session-config>
         <session-timeout>
             30

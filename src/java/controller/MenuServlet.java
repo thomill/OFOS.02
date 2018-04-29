@@ -9,6 +9,8 @@ import Entity.CustomerOrder;
 import Util.RestaurantUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +29,8 @@ import javax.servlet.http.HttpSession;
         urlPatterns = {"/WingStop",
             "/FirehouseSubs",
             "/PandaExpress",
-            "/PoblanoBurritos"})
+            "/PoblanoBurritos",
+            "/rateRestaurant"})
 public class MenuServlet extends HttpServlet {
 
     /**
@@ -78,6 +81,8 @@ public class MenuServlet extends HttpServlet {
 
             // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(1);
+            double rating = RestaurantUtil.getRating(1);
+            session.setAttribute("rating", rating);
             session.setAttribute("menu", menu);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
@@ -85,14 +90,15 @@ public class MenuServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             }
             
-        } else if (userPath.equals("/FirehouseSubs")) { //restID = 1
+        } else if (userPath.equals("/FirehouseSubs")) {
             String page = "menus/firehousesubs.jsp";
 
             // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(2);
+            double rating = RestaurantUtil.getRating(2);
+            session.setAttribute("rating", rating);
             session.setAttribute("menu", menu);
            
-
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
@@ -102,6 +108,8 @@ public class MenuServlet extends HttpServlet {
 
             // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(3);
+            double rating = RestaurantUtil.getRating(3);
+            session.setAttribute("rating", rating);
             session.setAttribute("menu", menu);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
@@ -113,9 +121,9 @@ public class MenuServlet extends HttpServlet {
 
             // access a class called RestaurantUtil
             List menu = RestaurantUtil.getMenu(4);
+            double rating = RestaurantUtil.getRating(4);
+            session.setAttribute("rating", rating);
             session.setAttribute("menu", menu);
-            
-            
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
@@ -135,7 +143,21 @@ public class MenuServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
+
+        double currentRating=0;
+        double customerRating = 0;
+        
+
+        if (userPath.equals("/rateRestaurant")) {
+            currentRating = (double) session.getAttribute("rating");
+            customerRating = parseDouble(request.getParameter("customerRating"));
+            RestaurantUtil.rateRestaurant(customerRating, 2);
+        } 
+        
+        response.sendRedirect("FirehouseSubs");
+
     }
 
     /**

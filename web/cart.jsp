@@ -100,7 +100,7 @@
                 Total: $${total}
         </div>
     
-         <form action="${initParam['posturl']}" method="post">
+         <form action="placeOrder" method="post">
             <input type="hidden" name="upload" value="1"/>
             <input type="hidden" name="return" value="${initParam['returnurl']}"/>
             <input type="hidden" name="cmd" value="_cart"/>
