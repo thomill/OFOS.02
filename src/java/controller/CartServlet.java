@@ -159,7 +159,7 @@ public class CartServlet extends HttpServlet {
 
         } else if (userPath.equals("/placeOrder")) {
             CartUtil.placeOrder(user.getEmail());
-            String page = "index.jsp";
+            String page = "https://www.sandbox.paypal.com/cgi-bin/webscr";
                RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
                 dispatcher.forward(request, response);

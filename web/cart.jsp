@@ -100,16 +100,21 @@
                 Total: $${total}
         </div>
     
-         <form action="placeOrder" method="post">
+         <form action="${initParam['posturl']}" method="post">
             <input type="hidden" name="upload" value="1"/>
             <input type="hidden" name="return" value="${initParam['returnurl']}"/>
             <input type="hidden" name="cmd" value="_cart"/>
             <input type="hidden" name="business" value="${initParam['business']}"/>
 
+            <input type="hidden" name="item_name_1" value="product 1"/>
             <input type="hidden" name="amount_1" value="${total}"/>
+            <input type="hidden" name="quantity_1" value="1"/>
+<!--            <input type="submit" value="payment"/>-->
+<
             <input class="btn btn-primary" type="submit" value="Place Order"/>
         </form>
         <a class="btn btn-default" href="clearCart">Clear cart</a>   
+
       
     </body>
 </html>

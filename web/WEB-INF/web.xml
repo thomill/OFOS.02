@@ -7,7 +7,7 @@
     <context-param>
         
         <param-name> authtoken</param-name>
-        <param-value>AW5YcxHWmMakqNHfkLRiZzGKj.E6AYVJGxjIOLhIslNx.B9yN7N92nVf</param-value>
+        <param-value>ziwCvy6EOBFvAY6QUGPvHFX5nQrLeo2RHAxKnxv3Kk9uo8GuBRp9u8YsfKG</param-value>
            
     </context-param>
     <context-param>
@@ -19,13 +19,13 @@
      <context-param>
         
         <param-name> business</param-name>
-        <param-value> tjomhill@gmail.com</param-value>
+        <param-value>nihit.neema123@gmail.com</param-value>
            
     </context-param>
      <context-param>
         
         <param-name> returnurl</param-name>
-        <param-value>http://localhost:8080/OFOS-Updated/payment.jsp </param-value>
+        <param-value>http://localhost:8080/OFOS-Updated/cart.jsp </param-value>
            
     </context-param>
     <servlet>

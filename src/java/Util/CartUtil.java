@@ -41,7 +41,7 @@ public class CartUtil {
          * authentication) Use Authentication: Yes Port for TLS/STARTTLS: 587
          */
         final String fromEmail = "tjhill@ilstu.edu"; //requires valid gmail id
-        final String password = "Ilstuirates0"; // correct password for gmail id
+        final String password = "your pw here"; // correct password for gmail id
         final String toEmail = "tjomhill@yahoo.com"; // can be any email id 
 
         System.out.println("TLSEmail Start");
