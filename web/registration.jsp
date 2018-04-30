@@ -8,17 +8,37 @@
 <%@page import="java.util.Properties"%>
 <%@ page import ="java.sql.*" %>
 <%
-    String fname = request.getParameter("fname");    
+    String fname = request.getParameter("fname");
+    String pwd = request.getParameter("pass");
     String lname = request.getParameter("lname");
     String email = request.getParameter("email");
-    String uname = request.getParameter("uname");
-    String pass = request.getParameter("pass");
+    int AccountId;
+    int custId;
+
+    session.setAttribute("fname", fname);
+    session.setAttribute("lname", lname);
+    session.setAttribute("pass", pwd);
+    session.setAttribute("email", email);
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS",
             "root", "root");
     Statement st = con.createStatement();
-    //ResultSet rs;
-    int i = st.executeUpdate("insert into account(email, username, password) values ('" + fname + "','" + lname + "','" + email + "','" + uname + "','" + pass + "')");
+
+    int i = st.executeUpdate("insert into ofos.account(email, password, acctType) values ('" + email + "', '" + pwd + "','0')", st.RETURN_GENERATED_KEYS);
+    ResultSet rs = st.getGeneratedKeys();
+    if (rs.next()) {
+        AccountId = rs.getInt(1);
+    } else {
+        AccountId = rs.getInt(1);
+    }
+
+    int j = st.executeUpdate("insert into ofos.customer(fName, lName) values ('" + fname + "','" + lname + "')", st.RETURN_GENERATED_KEYS);
+    rs = st.getGeneratedKeys();
+    if (rs.next()) {
+        custId = rs.getInt(1);
+    } else {
+        custId = rs.getInt(1);
+    }
     if (i > 0) {
          String to = email;
 
@@ -39,7 +59,7 @@
         // Get the default Session object.
         Session sess = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("tjhill@ilstu.edu", "your ilstu password");
+                return new PasswordAuthentication("tjhill@ilstu.edu", "your pw here");
             }
         });
 
@@ -68,7 +88,9 @@
             mex.printStackTrace();
         }
         //session.setAttribute("userid", user);
-        response.sendRedirect("welcome.jsp");
+        session.setAttribute("AccountId", AccountId);
+        session.setAttribute("custId", custId);
+        response.sendRedirect("mainlogin.jsp");
        // out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
     } else {
         response.sendRedirect("index.jsp");

@@ -109,8 +109,6 @@
             <input type="hidden" name="item_name_1" value="product 1"/>
             <input type="hidden" name="amount_1" value="${total}"/>
             <input type="hidden" name="quantity_1" value="1"/>
-<!--            <input type="submit" value="payment"/>-->
-<
             <input class="btn btn-primary" type="submit" value="Place Order"/>
         </form>
         <a class="btn btn-default" href="clearCart">Clear cart</a>   

@@ -74,7 +74,7 @@
                                 </ul>
                             </nav>
                             <a href="cart.jsp"><button type="button" class="btn btn-default btn-sm pull-right col-lg-3">
-          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
                                 </button></a>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="back">
                             <div class="line1 os-animation animated rotateInDownLeft" data-os-animation="rotateInDownLeft" data-os-animation-delay="1s" style="animation-delay: 1s;"> </div>
                             <div class="line2 os-animation animated rotateInDownLeft" data-os-animation="rotateInDownLeft" data-os-animation-delay="1s" style="animation-delay: 1s;"> </div>
-                            <h2 class="os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.50s" style="animation-delay: 0.5s;">Network of over 5000 Restaurants</h2>
+                            <h2 class="os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.50s" style="animation-delay: 0.5s;">Network of Restaurants</h2>
                             <h3 class="os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="1s" style="animation-delay: 1s;">To Order Online</h3>
                             <div class="line3 os-animation animated rotateInDownRight" data-os-animation="rotateInDownRight" data-os-animation-delay="1s" style="animation-delay: 1s;"> </div>
                             <div class="line4 os-animation animated rotateInDownRight" data-os-animation="rotateInDownRight" data-os-animation-delay="1s" style="animation-delay: 1s;"> </div>
@@ -96,15 +96,11 @@
                     </div>
                 </div>
 
-                <!--                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <div class="textbox os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
-                                        <h3>Restaurant Name</h3>
-                                        <form action="demo_form.asp" method="get">
-                                            <input type="text" name="searchRest"><br>
-                                            <input type="submit" value="Submit">
-                                        </form>
-                                    </div>-->
-                <div class="textbox os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
+                <form class="example" action="SearchServlet" method="post">
+                    <input type="text" placeholder="Search.." name="search"/>
+                    <button type="submit">Search<i class="fa fa-search"></i></button>
+                </form>
+<!--                <div class="textbox os-animation animated zoomIn" data-os-animation="zoomIn" data-os-animation-delay="0.5s" style="animation-delay: 0.5s;">
                     <div class="select-wrapper">
                         <select name="list" id="list" accesskey="target">
                             <option value='none' selected>Choose a restaurant</option>
@@ -124,10 +120,9 @@
                                     }
                                 </script>
                                 </div>
-                                </div>
+                                </div>-->
                                 </div>
 
-                                </div>
                                 </section>
 
                                 <footer class="saction8">

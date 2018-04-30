@@ -30,7 +30,11 @@ import javax.servlet.http.HttpSession;
             "/FirehouseSubs",
             "/PandaExpress",
             "/PoblanoBurritos",
-            "/rateRestaurant"})
+            "/rateRestaurant",
+            "/firehousesubs",
+            "/pandaexpress",
+            "/poblanoburritos",
+            "/wingstop"})
 public class MenuServlet extends HttpServlet {
 
     /**
@@ -76,7 +80,7 @@ public class MenuServlet extends HttpServlet {
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
 
-        if (userPath.equals("/WingStop")) { //restID = 1
+        if (userPath.equals("/WingStop") || (userPath.equals("/wingstop"))) { //restID = 1
             String page = "menus/wingstop.jsp";
 
             // access a class called RestaurantUtil
@@ -89,8 +93,8 @@ public class MenuServlet extends HttpServlet {
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
             }
-            
-        } else if (userPath.equals("/FirehouseSubs")) {
+
+        } else if (userPath.equals("/FirehouseSubs") || (userPath.equals("/firehousesubs"))) {
             String page = "menus/firehousesubs.jsp";
 
             // access a class called RestaurantUtil
@@ -98,12 +102,12 @@ public class MenuServlet extends HttpServlet {
             double rating = RestaurantUtil.getRating(2);
             session.setAttribute("rating", rating);
             session.setAttribute("menu", menu);
-           
+
             RequestDispatcher dispatcher = request.getRequestDispatcher(page);
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
             }
-        } else if (userPath.equals("/PoblanoBurritos")) { //restID = 1
+        } else if (userPath.equals("/PoblanoBurritos")|| (userPath.equals("/poblanoburritos"))) { //restID = 1
             String page = "menus/poblanoburritos.jsp";
 
             // access a class called RestaurantUtil
@@ -116,7 +120,7 @@ public class MenuServlet extends HttpServlet {
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
             }
-        } else if (userPath.equals("/PandaExpress")) { //restID = 1
+        } else if (userPath.equals("/PandaExpress")|| (userPath.equals("/pandaexpress"))) { //restID = 1
             String page = "menus/pandaexpress.jsp";
 
             // access a class called RestaurantUtil
@@ -146,16 +150,15 @@ public class MenuServlet extends HttpServlet {
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
 
-        double currentRating=0;
+        double currentRating = 0;
         double customerRating = 0;
-        
 
         if (userPath.equals("/rateRestaurant")) {
             currentRating = (double) session.getAttribute("rating");
             customerRating = parseDouble(request.getParameter("customerRating"));
             RestaurantUtil.rateRestaurant(customerRating, 2);
-        } 
-        
+        }
+
         response.sendRedirect("FirehouseSubs");
 
     }

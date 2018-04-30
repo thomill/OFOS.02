@@ -5,28 +5,20 @@
         <param-value>Development</param-value>
     </context-param>
     <context-param>
-        
         <param-name> authtoken</param-name>
         <param-value>ziwCvy6EOBFvAY6QUGPvHFX5nQrLeo2RHAxKnxv3Kk9uo8GuBRp9u8YsfKG</param-value>
-           
     </context-param>
     <context-param>
-        
         <param-name> posturl</param-name>
         <param-value>https://www.sandbox.paypal.com/cgi-bin/webscr </param-value>
-           
     </context-param>
-     <context-param>
-        
+    <context-param>
         <param-name> business</param-name>
         <param-value>nihit.neema123@gmail.com</param-value>
-           
     </context-param>
-     <context-param>
-        
+    <context-param>
         <param-name> returnurl</param-name>
         <param-value>http://localhost:8080/OFOS-Updated/cart.jsp </param-value>
-           
     </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -49,11 +41,18 @@
         <servlet-name>cartServlet</servlet-name>
         <servlet-class>controller.CartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>controller.SearchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/SearchServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
