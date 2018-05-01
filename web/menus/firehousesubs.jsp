@@ -75,7 +75,7 @@
         <h1>Welcome to Firehouse Subs!</h1>
         <h3>Rating: ${rating}/5</h3>
         <h2>Menu</h2>
-        <form class="" action="<c:url value="rateRestaurant"/>" method="post">
+        <form class="" action="<c:url value="rateRestaurantFirehouse"/>" method="post">
             <select name="customerRating">
                 <option selected="selected" value="0">Select Rating</option>
                 <option value="1">1</option>
@@ -84,13 +84,10 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-
-
                 <input class="btn btn-primary"
                    type="submit"
                    name="submit"
                    value="Rate">
-
         </form>
 
 

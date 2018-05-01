@@ -76,7 +76,7 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "phone")
-    private int phone;
+    private String phone;
     @JoinColumn(name = "AccountID", referencedColumnName = "AccountID")
     @ManyToOne
     private Account accountID;
@@ -90,7 +90,7 @@ public class Customer implements Serializable {
         this.custId = custId;
     }
 
-    public Customer(Integer custId, String fName, String lName, String street, String stateLoc, int zip, int phone) {
+    public Customer(Integer custId, String fName, String lName, String street, String stateLoc, int zip, String phone) {
         this.custId = custId;
         this.fName = fName;
         this.lName = lName;
@@ -148,11 +148,11 @@ public class Customer implements Serializable {
         this.zip = zip;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

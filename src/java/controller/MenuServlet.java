@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,12 +31,17 @@ import javax.servlet.http.HttpSession;
             "/FirehouseSubs",
             "/PandaExpress",
             "/PoblanoBurritos",
-            "/rateRestaurant",
             "/firehousesubs",
             "/pandaexpress",
             "/poblanoburritos",
-            "/wingstop"})
+            "/wingstop",
+            "/rateRestaurantFirehouse",
+            "/rateRestaurantWingStop",
+            "/rateRestaurantPoblanos",
+            "/rateRestaurantPanda"})
 public class MenuServlet extends HttpServlet {
+    
+    private static DecimalFormat df2 = new DecimalFormat(".##");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,8 +81,8 @@ public class MenuServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
+        
+        
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
 
@@ -107,7 +113,7 @@ public class MenuServlet extends HttpServlet {
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
             }
-        } else if (userPath.equals("/PoblanoBurritos")|| (userPath.equals("/poblanoburritos"))) { //restID = 1
+        } else if (userPath.equals("/PoblanoBurritos") || (userPath.equals("/poblanoburritos"))) { //restID = 1
             String page = "menus/poblanoburritos.jsp";
 
             // access a class called RestaurantUtil
@@ -120,7 +126,7 @@ public class MenuServlet extends HttpServlet {
             if (dispatcher != null) {
                 dispatcher.forward(request, response);
             }
-        } else if (userPath.equals("/PandaExpress")|| (userPath.equals("/pandaexpress"))) { //restID = 1
+        } else if (userPath.equals("/PandaExpress") || (userPath.equals("/pandaexpress"))) { //restID = 1
             String page = "menus/pandaexpress.jsp";
 
             // access a class called RestaurantUtil
@@ -152,14 +158,29 @@ public class MenuServlet extends HttpServlet {
 
         double currentRating = 0;
         double customerRating = 0;
+        
 
-        if (userPath.equals("/rateRestaurant")) {
+        if (userPath.equals("/rateRestaurantFirehouse")) {
             currentRating = (double) session.getAttribute("rating");
             customerRating = parseDouble(request.getParameter("customerRating"));
             RestaurantUtil.rateRestaurant(customerRating, 2);
+            response.sendRedirect("FirehouseSubs");
+        } else if (userPath.equals("/rateRestaurantWingStop")) {
+            currentRating = (double) session.getAttribute("rating");
+            customerRating = parseDouble(request.getParameter("customerRating"));
+            RestaurantUtil.rateRestaurant(customerRating, 1);
+            response.sendRedirect("WingStop");
+        } else if (userPath.equals("/rateRestaurantPoblanos")) {
+            currentRating = (double) session.getAttribute("rating");
+            customerRating = parseDouble(request.getParameter("customerRating"));
+            RestaurantUtil.rateRestaurant(customerRating, 3);
+            response.sendRedirect("PoblanoBurritos");
+        } else if (userPath.equals("/rateRestaurantPanda")) {
+            currentRating = (double) session.getAttribute("rating");
+            customerRating = parseDouble(request.getParameter("customerRating"));
+            RestaurantUtil.rateRestaurant(customerRating, 4);
+            response.sendRedirect("PandaExpress");
         }
-
-        response.sendRedirect("FirehouseSubs");
 
     }
 

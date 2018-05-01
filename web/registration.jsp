@@ -1,3 +1,4 @@
+<%@page import="Util.Email"%>
 <%@page import="javax.mail.PasswordAuthentication"%>
 <%@page import="javax.mail.MessagingException"%>
 <%@page import="javax.mail.Transport"%>
@@ -6,12 +7,18 @@
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@page import="javax.mail.Session"%>
 <%@page import="java.util.Properties"%>
+
 <%@ page import ="java.sql.*" %>
 <%
     String fname = request.getParameter("fname");
     String pwd = request.getParameter("pass");
     String lname = request.getParameter("lname");
     String email = request.getParameter("email");
+    String street = request.getParameter("street");
+    String state = request.getParameter("state");
+    String zip = request.getParameter("zip");
+    String phone = request.getParameter("phone");
+    
     int AccountId;
     int custId;
 
@@ -32,7 +39,7 @@
         AccountId = rs.getInt(1);
     }
 
-    int j = st.executeUpdate("insert into ofos.customer(fName, lName) values ('" + fname + "','" + lname + "')", st.RETURN_GENERATED_KEYS);
+    int j = st.executeUpdate("insert into ofos.customer(fName, lName, AccountID, street, stateLoc, zip, phone) values ('" + fname + "','" + lname + "','" + AccountId + "','" + street + "','" + state + "','" + zip + "','" + phone + "')", st.RETURN_GENERATED_KEYS);
     rs = st.getGeneratedKeys();
     if (rs.next()) {
         custId = rs.getInt(1);

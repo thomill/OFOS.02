@@ -6,8 +6,6 @@
 package controller;
 
 import DAO.AccountDAO;
-import Entity.Account;
-import Entity.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,18 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Tom
  */
-@WebServlet(name = "Login",
-        loadOnStartup = 1,
-        urlPatterns = {
-            "/login",
-            "/logout"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ProfileServlet", urlPatterns = {"/profile"})
+public class ProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +38,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet ProfileServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProfileServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,17 +59,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
         String userPath = request.getServletPath();
-        HttpSession session = request.getSession();
-
-        // if the logout path is requested
-        if (userPath.equals("/logout")) {
-
-            session.invalidate();
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-
+        
+        if (userPath.equals("/profile")) {
+            AccountDAO dao = new AccountDAO();
+            
+            request.getRequestDispatcher("/profile.jsp").forward(request, response);
+            
         }
     }
 
@@ -91,36 +80,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
-        String userPath = request.getServletPath();
-        HttpSession session = request.getSession();
-
-        String uname = request.getParameter("username");
-        String pass = request.getParameter("pass");
-
-        // if login function is called
-        if (userPath.equals("/login")) {
-
-            AccountDAO dao = new AccountDAO();
-            Account user = new Account();
-            int acctId = dao.check(uname,pass);
-
-            if (acctId > 0) {
-                
-                user.setEmail(uname);
-                user.setAccountID(acctId);
-                session.setAttribute("account", user);
-                response.sendRedirect("index.jsp");
-                Customer cust =  new Customer();
-            cust = dao.getCustomer(user.getAccountID());
-            session.setAttribute("customer", cust);
-            } else {
-                response.sendRedirect("success.jsp");
-            }
-
-        }
-        
+        processRequest(request, response);
     }
 
     /**
