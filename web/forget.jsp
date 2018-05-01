@@ -87,11 +87,11 @@ span.psw {
     <label for="email"><b>Email</b></label><br/>
     <input type="text" placeholder="Enter Email" name="email" required><br/>
 
-    <label for="psw"><b> Enter New Password</b></label><br/>
+<!--    <label for="psw"><b> Enter New Password</b></label><br/>
     <input type="password" placeholder="Enter Password" name="pass" required><br/>
     
     <label for="psw"><b> Confirm Password</b></label><br/>
-    <input type="password" placeholder="Enter new Password" name="cpass" required><br/>
+    <input type="password" placeholder="Enter new Password" name="cpass" required><br/>-->
         
     <button type="submit">Update Password</button>
    
@@ -100,7 +100,7 @@ span.psw {
   <div class="container" style="background-color:#f1f1f1">
    
     <span class="psw">Yet Not <a href="reg.jsp">Registered?</a></span>
-    Already a member <a href="mainlogin.jsp">Login here</a></span>
+    <span>Already a member? <a href="mainlogin.jsp">Login here</a></span>
   </div>
     </form></center>
 

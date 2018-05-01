@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Cart</title>
         <!--CSS---->            
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/responsive.css">
@@ -73,13 +73,14 @@
         <h2>Cart</h2>
         <table class="cartList">
             <tr>
-                <th class="col-md-2">Item</th>
-                <th class="col-md-1">Price</th>
-                <th class="col-md-1">Quantity</th>
+                <th class="col-md-2 h4">Item</th>
+                <th class="col-md-1 h4">Price</th>
+                <th class="col-md-1 h4">Quantity</th>
+                <th></th>
             </tr>
         <c:set var="total" value="${0}"/>
         <c:forEach items="${cart}" var="item" varStatus="status">
-            <tr class="${((status.index % 2) == 0) ? 'lightBlue' : 'white'}">
+            <tr class="${((status.index % 2) == 0) ? 'lightBlue' : 'white'}  ">
                 <td>${item.getItem().getItemName()} </td>
                 <td>$${item.getItem().getPrice()}</td>
                 <td>${item.getQuantity()}</td>
@@ -87,7 +88,7 @@
                         <input type="hidden"
                                name="itemId"
                                value="${status.count}">
-                        <input class="btn btn-primary"
+                        <input class="btn btn-primary menuItem"
                                type="submit"
                                name="submit"
                                value="Remove From Cart">

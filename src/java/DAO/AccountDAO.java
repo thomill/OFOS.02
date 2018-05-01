@@ -58,6 +58,7 @@ public class AccountDAO {
             Statement st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM customer where accountID = " + acctId);
             while (rs.next()) {
+                cust.setCustId(((Integer) rs.getInt("custId")));
                 cust.setFName(rs.getString("fName"));
                 cust.setLName(rs.getString("lName"));
                 cust.setStreet(rs.getString("street"));

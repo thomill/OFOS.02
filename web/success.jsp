@@ -1,7 +1,7 @@
 <%
     if ((session.getAttribute("username") == null) || (session.getAttribute("username") == "")) {
 %>
-You are not logged in<br/>
+Invalid Username or Password<br/>
 <a href="mainlogin.jsp">Please Login</a>
 <%} else {
 %>

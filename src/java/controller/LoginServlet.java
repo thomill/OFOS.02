@@ -110,6 +110,7 @@ public class LoginServlet extends HttpServlet {
                 
                 user.setEmail(uname);
                 user.setAccountID(acctId);
+                user.setPassword(pass);
                 session.setAttribute("account", user);
                 response.sendRedirect("index.jsp");
                 Customer cust =  new Customer();

@@ -48,21 +48,29 @@
                             <div class="mobile-nav-btn"><img class="nav-open" src="css/nav-open.png" alt="Nav Button Open"> <img class="nav-close" src="css/nav-close.png" alt="Nav Button Close"> </div>
                             <nav>
                                 <ul>
-                                    <li><a href="index.jsp">Home</a></li>
-                                        <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
+                                    <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                     <li>                                        
                                         <a href="mainlogin.jsp">Login</a>
                                     </li>
                                     <li><a href="reg.jsp">Register</a></li>
                                         <%} else {
                                         %>
-                                        <% } %>
+                                    <li>
+                                        <a>Welcome ${customer.getFName()}</a>
+                                    </li>
+                                    <li><a href="profile">Profile</a>
+                                    </li>
+                                    <% } %>
                                     <li>
                                         <% if ((session.getAttribute("account") == null) || (session.getAttribute("account") == "")) { %>
                                         <%} else {
                                         %><a href="logout">Logout</a></li> <% }%>
                                     <li><a href="restaurants">Restaurants</a></li>
                                 </ul>
+                            </nav>
+                            <a href="cart.jsp"><button type="button" class="btn btn-default btn-sm pull-right col-lg-3">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+                                </button></a>
                         </div>
                     </div>
                 </div>
@@ -76,5 +84,7 @@
              Zip code: ${customer.getZip()}<br/>
              Phone: ${customer.getPhone()}<br/> 
         </div>
+        
+        <a class="btn btn-primary" href="changeInfo.jsp" role="button">Change Information</a>
     </body>
 </html>

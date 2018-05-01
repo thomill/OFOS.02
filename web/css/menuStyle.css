@@ -18,7 +18,9 @@ and open the template in the editor.
 .menuItem {
     margin: 10px;
 }
-
+.cartItem {
+    margin: 10px;
+}
 h1, h2 {
     margin: 5px;
 }

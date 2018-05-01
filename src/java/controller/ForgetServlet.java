@@ -5,6 +5,8 @@
  */
 package controller;
 
+import Util.Email;
+import Util.ForgetUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -13,11 +15,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,7 +47,7 @@ public class ForgetServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ForgetServlet</title>");            
+            out.println("<title>Servlet ForgetServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ForgetServlet at " + request.getContextPath() + "</h1>");
@@ -79,29 +83,28 @@ public class ForgetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
-    String pass = request.getParameter("pass");
-    
-    try {
+//        String pass = request.getParameter("pass");
+        String pass = ForgetUtil.randomAlphaNumeric(10);
+
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS","root","root");
-     PreparedStatement ps = con.prepareStatement("update account set password=? where email=?");
-     ps.setString(2, email);
-     ps.setString(1, pass);
-     int i=ps.executeUpdate();
-      if(i>0){
-      response.sendRedirect("mainlogin.jsp");
-      }
-      else{
-      response.sendRedirect("index.jsp");
-      }
-       
-       
-       
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OFOS", "root", "root");
+            PreparedStatement ps = con.prepareStatement("update account set password=? where email=?");
+            ps.setString(2, email);
+            ps.setString(1, pass);
+            ForgetUtil.sendCredentials(email, pass);
+            int i = ps.executeUpdate();
+            if (i > 0) {
+                response.sendRedirect("mainlogin.jsp");
+            } else {
+                response.sendRedirect("index.jsp");
+            }
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ForgetServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ForgetServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
 
     /**
